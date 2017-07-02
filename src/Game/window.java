@@ -1,6 +1,7 @@
 package Game;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
@@ -14,13 +15,15 @@ import javax.swing.JPanel;
 
 import View.windowElements;
 
-public class window extends JFrame{
+public class window extends JFrame implements ActionListener{
 	
 	private JPanel container = new JPanel();
+	ArrayList<JButton> buttons = new ArrayList<JButton>();
 
 	public void window(ArrayList<JButton> buttons) 
 	{
 		int X=900,Y=900;
+		this.buttons=buttons;
 		windowElements WE = new windowElements();
 	    this.setTitle("test");
 	    this.setSize(X,Y);
@@ -41,6 +44,7 @@ public class window extends JFrame{
 				{
 				tempButton.setBounds((X/3)*(i-3),Y-130,X/3,50);
 				}
+			tempButton.addActionListener(this);
 			container.add(tempButton);
 		}
 	    this.setContentPane(container);
@@ -49,7 +53,10 @@ public class window extends JFrame{
 	
 	public void actionPerformed(ActionEvent arg0)
 	{
-		 
+		 if(arg0.getSource() == buttons.get(0))
+		 {
+			 System.out.println("hello");
+		 }
 	}
 
 
