@@ -20,18 +20,28 @@ public class window extends JFrame{
 
 	public void window(ArrayList<JButton> buttons) 
 	{
+		int X=900,Y=900;
 		windowElements WE = new windowElements();
 	    this.setTitle("test");
-	    this.setSize(900,900);
+	    this.setSize(X,Y);
 	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    this.setLocationRelativeTo(null);
+	    this.setResizable(false);
 	    container.setBackground(Color.black);
-	    container.setLayout(new BorderLayout());
-	    container.add(WE, BorderLayout.CENTER);
+	    container.setLayout(null);
+	    container.add(WE);
 		for (int i = 0; i < buttons.size(); i++)
 		{
 			JButton tempButton = buttons.get(i);
-			container.add(tempButton, BorderLayout.SOUTH);
+			if (i<3)
+				{
+				tempButton.setBounds((X/3)*i,Y-80,X/3,50);
+				}
+			else
+				{
+				tempButton.setBounds((X/3)*(i-3),Y-130,X/3,50);
+				}
+			container.add(tempButton);
 		}
 	    this.setContentPane(container);
 	    this.setVisible(true);   

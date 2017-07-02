@@ -9,7 +9,12 @@ public class menuUsed {
 	public void menuChoice()
 	{
 		buttons.clear();
-		buttons.add(new JButton("test"));
+		buttons.add(new JButton("Fighter"));
+		buttons.add(new JButton("Healer"));
+		buttons.add(new JButton("Tank"));
+		buttons.add(new JButton("Alea"));
+		buttons.add(new JButton("Normal"));
+		buttons.add(new JButton("Hard"));
 		W.window(buttons);
 	}
 	
