@@ -48,21 +48,24 @@ public class windowElements extends JPanel implements ActionListener
 				{
 				tempButton.setBounds((X/3)*i,Y-80,X/3,50);
 				}
+			else if(i==3)
+				{
+				tempButton.setBounds(X-150, 0, X/6, 50);
+				}
 			else
 				{
-				tempButton.setBounds((X/3)*(i-3),Y-130,X/3,50);
+				tempButton.setBounds((X/4)*(i-4),Y-130,X/4,50);
 				}
 			tempButton.addActionListener(this);
 			this.add(tempButton);
 		}
 	}
-
-public void actionPerformed(ActionEvent arg0)
+	public void actionPerformed(ActionEvent arg0)
 	{
 	 	entities.clear();
-		if(arg0.getSource() == buttons.get(0))
+		if(arg0.getSource() == buttons.get(4))
 		{
-		 entities.add(new damager(X/2,Y/2));
+		 entities.add(new damager(X/2-86,Y/2-150));
 		}
 		repaint();
 	}

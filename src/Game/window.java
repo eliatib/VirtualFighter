@@ -16,6 +16,7 @@ public class window extends JFrame{
 	
 	ArrayList<entity> entities = new ArrayList<entity>();
 	int X=900,Y=900;
+
 	
 	public void window(ArrayList<JButton> buttons) 
 	{
