@@ -29,6 +29,16 @@ public class vampire extends entity{
 		}
 	}
 	
+	public int getVampireLife()
+	{
+		return Life;
+	}
+	
+	public int getVampireDmg()
+	{
+		return Dmg;
+	}
+	
 	public Image getVampireImg()
 	{
 		ImageIcon ic = new ImageIcon("image/vampire1.png");

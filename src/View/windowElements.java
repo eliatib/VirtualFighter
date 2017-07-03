@@ -9,8 +9,11 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
+import Game.menuUsed;
+import Game.window;
 import Model.*;
 
 
@@ -19,6 +22,8 @@ public class windowElements extends JPanel implements ActionListener
 	ArrayList<entity> entities = new ArrayList<entity>();
 	ArrayList<JButton> buttons = new ArrayList<JButton>();
 	private int X,Y;
+	private int menu=0;
+	menuUsed MU = new menuUsed();
 	
 	public windowElements(ArrayList<entity> entities,ArrayList<JButton> buttons,int X,int Y)
 	{
@@ -63,6 +68,12 @@ public class windowElements extends JPanel implements ActionListener
 	public void actionPerformed(ActionEvent arg0)
 	{
 	 	entities.clear();
+		if(arg0.getSource() == buttons.get(3))
+		{ 
+			SwingUtilities.windowForComponent(this).dispose();
+			menu=1;
+			MU.menuFight();
+		}
 		if(arg0.getSource() == buttons.get(4))
 		{
 		 entities.add(new fighter(X/2-68,Y/2-84));
@@ -81,5 +92,6 @@ public class windowElements extends JPanel implements ActionListener
 		}
 		repaint();
 	}
+
 }
 

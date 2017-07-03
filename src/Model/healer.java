@@ -29,6 +29,16 @@ public class healer extends entity{
 		}
 	}
 	
+	public int getHealerLife()
+	{
+		return Life;
+	}
+	
+	public int getHealerDmg()
+	{
+		return Dmg;
+	}
+	
 	public Image getHealerImg()
 	{
 		ImageIcon ic = new ImageIcon("image/healer1.png");

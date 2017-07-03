@@ -2,6 +2,7 @@ package Game;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.awt.Color;
 
@@ -16,12 +17,11 @@ public class window extends JFrame{
 	
 	ArrayList<entity> entities = new ArrayList<entity>();
 	int X=900,Y=900;
-
 	
 	public void window(ArrayList<JButton> buttons) 
 	{
 		windowElements WE = new windowElements(entities,buttons,X,Y);
-	    this.setTitle("test");
+		this.setTitle("VirtualFighter");
 	    this.setSize(X,Y);
 	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    this.setLocationRelativeTo(null);
@@ -29,5 +29,4 @@ public class window extends JFrame{
 	    this.setContentPane(WE);
 	    this.setVisible(true);   
 	}
-	
 }

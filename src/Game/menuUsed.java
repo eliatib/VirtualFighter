@@ -3,6 +3,8 @@ package Game;
 import java.util.ArrayList;
 import javax.swing.JButton;
 
+import View.windowElements;
+
 public class menuUsed {
 	ArrayList<JButton> buttons = new ArrayList<JButton>();
 	window W = new window();
@@ -29,7 +31,18 @@ public class menuUsed {
 		W.window(buttons);
 	}
 	
-	public void menuFight(){}
+	public void menuFight()
+	{
+		buttons.clear();
+		JButton button1,button2,button3;
+		button1 = new JButton("Attack");
+		buttons.add(button1);
+		button2 = new JButton("Defence");
+		buttons.add(button2);
+		button3 = new JButton("Special");
+		buttons.add(button3);
+		W.window(buttons);
+	}
 	
 	public void menuRetry(){}
 	

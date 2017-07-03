@@ -29,6 +29,16 @@ public class tank extends entity{
 		}
 	}
 	
+	public int getTankLife()
+	{
+		return Life;
+	}
+	
+	public int getTankDmg()
+	{
+		return Dmg;
+	}
+	
 	public Image getTankImg()
 	{
 		ImageIcon ic = new ImageIcon("image/tank1.png");
