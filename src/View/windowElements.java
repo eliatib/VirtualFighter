@@ -11,8 +11,8 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-import Model.damager;
-import Model.entity;
+import Model.*;
+
 
 public class windowElements extends JPanel implements ActionListener
 {
@@ -65,7 +65,19 @@ public class windowElements extends JPanel implements ActionListener
 	 	entities.clear();
 		if(arg0.getSource() == buttons.get(4))
 		{
-		 entities.add(new damager(X/2-86,Y/2-150));
+		 entities.add(new fighter(X/2-68,Y/2-84));
+		}
+		if(arg0.getSource() == buttons.get(5))
+		{
+		 entities.add(new healer(X/2-108,Y/2-88));
+		}
+		if(arg0.getSource() == buttons.get(6))
+		{
+		 entities.add(new tank(X/2-85,Y/2-45));
+		}
+		if(arg0.getSource() == buttons.get(7))
+		{
+		 entities.add(new vampire(X/2-76,Y/2-84));
 		}
 		repaint();
 	}
