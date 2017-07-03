@@ -5,7 +5,8 @@ import java.awt.Graphics2D;
 public class entity {
 	protected int x,y,Life,Power,Id;
 	
-	public void Entity(int x, int y, int Life, int Power, int Id)
+
+	public entity(int x, int y)
 	{
 		this.x = x;
 		this.y = y;
