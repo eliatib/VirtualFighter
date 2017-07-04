@@ -17,7 +17,7 @@ public class vampire extends entity{
 	
 	public void draw(Graphics2D g2d)
 	{
-		g2d.drawImage(getVampireImg(), x, y, null);
+		g2d.drawImage(getVampireImg("image/vampire1.png"), x, y, null);
 		for (int i=0;i<Life;i++)
 		{
 			g2d.drawImage(CI.getLifeImg(), i*64, 0, null);
@@ -39,9 +39,23 @@ public class vampire extends entity{
 		return Dmg;
 	}
 	
-	public Image getVampireImg()
+	public void drawReverse(Graphics2D g2d)
 	{
-		ImageIcon ic = new ImageIcon("image/vampire1.png");
+		g2d.drawImage(getVampireImg("image/vampire1Flip.png"), x, y, null);
+		for (int i=0;i<Life;i++)
+		{
+			g2d.drawImage(CI.getLifeImg(), 825-i*64, 0, null);
+		}
+		
+		for (int i=0;i<Dmg;i++)
+		{
+			g2d.drawImage(CI.getDmgImg(), 825-i*64, 65, null);
+		}
+	}
+	
+	public Image getVampireImg(String image)
+	{
+		ImageIcon ic = new ImageIcon(image);
 		return ic.getImage();	
 	}
 	

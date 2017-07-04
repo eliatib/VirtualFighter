@@ -17,7 +17,7 @@ public class tank extends entity{
 	
 	public void draw(Graphics2D g2d)
 	{
-		g2d.drawImage(getTankImg(), x, y, null);
+		g2d.drawImage(getTankImg("image/tank1.png"), x, y, null);
 		for (int i=0;i<Life;i++)
 		{
 			g2d.drawImage(CI.getLifeImg(), i*64, 0, null);
@@ -39,9 +39,23 @@ public class tank extends entity{
 		return Dmg;
 	}
 	
-	public Image getTankImg()
+	public void drawReverse(Graphics2D g2d)
 	{
-		ImageIcon ic = new ImageIcon("image/tank1.png");
+		g2d.drawImage(getTankImg("image/tank1Flip.png"), x, y, null);
+		for (int i=0;i<Life;i++)
+		{
+			g2d.drawImage(CI.getLifeImg(), 825-i*64, 0, null);
+		}
+		
+		for (int i=0;i<Dmg;i++)
+		{
+			g2d.drawImage(CI.getDmgImg(), 825-i*64, 65, null);
+		}
+	}
+	
+	public Image getTankImg(String image)
+	{
+		ImageIcon ic = new ImageIcon(image);
 		return ic.getImage();	
 	}
 	

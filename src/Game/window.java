@@ -1,32 +1,24 @@
 package Game;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
-import java.util.ArrayList;
-import java.awt.Color;
 
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-
 import Model.*;
-import View.windowElements;
+import View.*;
 
 public class window extends JFrame{
 	
-	ArrayList<entity> entities = new ArrayList<entity>();
 	int X=900,Y=900;
 	
-	public void window(ArrayList<JButton> buttons) 
+	public void window(ArrayList<JButton> buttons,ArrayList<entity> entities) 
 	{
-		windowElements WE = new windowElements(entities,buttons,X,Y);
 		this.setTitle("VirtualFighter");
 	    this.setSize(X,Y);
 	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    this.setLocationRelativeTo(null);
 	    this.setResizable(false);
-	    this.setContentPane(WE);
+	    this.setContentPane(new windowElements(entities,buttons,X,Y));
 	    this.setVisible(true);   
 	}
 }

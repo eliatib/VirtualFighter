@@ -10,13 +10,9 @@ public class entity {
 	{
 		this.x = x;
 		this.y = y;
-		this.Life = Life;
-		this.Power = Power;
-		this.Id = Id;
 	}
 	
-	public void draw(Graphics2D g2d)
-	{
-		
-	}
+	public void draw(Graphics2D g2d){}
+	
+	public void drawReverse(Graphics2D g2d){}
 }

@@ -17,7 +17,7 @@ public class fighter extends entity {
 	
 	public void draw(Graphics2D g2d)
 	{
-		g2d.drawImage(getFighterImg(), x, y, null);
+		g2d.drawImage(getFighterImg("image/damager1.png"), x, y, null);
 		for (int i=0;i<Life;i++)
 		{
 			g2d.drawImage(CI.getLifeImg(), i*64, 0, null);
@@ -26,6 +26,20 @@ public class fighter extends entity {
 		for (int i=0;i<Dmg;i++)
 		{
 			g2d.drawImage(CI.getDmgImg(), i*64, 65, null);
+		}
+	}
+	
+	public void drawReverse(Graphics2D g2d)
+	{
+		g2d.drawImage(getFighterImg("image/damager1Flip.png"), x, y, null);
+		for (int i=0;i<Life;i++)
+		{
+			g2d.drawImage(CI.getLifeImg(), 825-i*64, 0, null);
+		}
+		
+		for (int i=0;i<Dmg;i++)
+		{
+			g2d.drawImage(CI.getDmgImg(), 825-i*64, 65, null);
 		}
 	}
 	
@@ -39,9 +53,9 @@ public class fighter extends entity {
 		return Dmg;
 	}
 	
-	public Image getFighterImg()
+	public Image getFighterImg(String image)
 	{
-		ImageIcon ic = new ImageIcon("image/damager1.png");
+		ImageIcon ic = new ImageIcon(image);
 		return ic.getImage();	
 	}
 	
