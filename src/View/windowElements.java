@@ -1,6 +1,7 @@
 package View;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -18,8 +19,8 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
+import Game.difficulty;
 import Game.menuUsed;
-import Game.window;
 import Model.*;
 
 
@@ -27,8 +28,10 @@ public class windowElements extends JPanel implements ActionListener
 {
 	ArrayList<entity> entities = new ArrayList<entity>();
 	ArrayList<JButton> buttons = new ArrayList<JButton>();
-	private int X,Y,id_entity;
-	private int menu=0;
+	private int X,Y,idEntity,idAI;
+	private int menu=0,Action,Difficulty=1;
+	difficulty D = new difficulty();
+	String Dif = "ALEA";
 	menuUsed MU = new menuUsed();
 	JLabel background;
 	
@@ -40,6 +43,9 @@ public class windowElements extends JPanel implements ActionListener
 		this.X=X;
 		this.Y=Y;
 		setFocusable(true);	
+		
+		if(entities.size()>1)
+		{Dif="FIGHT";}
 		
 		for (int i = 0; i < buttons.size(); i++)
 		{
@@ -81,46 +87,84 @@ public class windowElements extends JPanel implements ActionListener
 				tempPlayer.drawReverse(g2d);
 				}
 		}
-		
+		g.setColor(Color.WHITE);
+		g.setFont(new Font("Monospaced",Font.BOLD,32));
+		g.drawString(Dif, 400, 50);
 	}
 	
 	public void actionPerformed(ActionEvent arg0)
 	{
-	 	entities.clear();
+		if(arg0.getSource() == buttons.get(0))
+		{
+			if (menu==0)
+			{
+			Difficulty=1;
+			Dif="ALEA";
+			}
+			if (menu==1)
+			{
+			Action=1;
+			D.Fight(Difficulty, Action, idEntity, idAI);
+			}
+		}
+		if(arg0.getSource() == buttons.get(1))
+		{
+			if (menu==0)
+			{
+			Difficulty=2;
+			Dif="NORMAL";
+			}
+			if (menu==1)
+			{
+			Action=2;
+			D.Fight(Difficulty, Action, idEntity, idAI);
+			}
+		}
+		if(arg0.getSource() == buttons.get(2))
+		{
+			if (menu==0)
+			{
+			Difficulty=3;
+			Dif="HARD";
+			}
+			if (menu==1)
+			{
+			Action=3;
+			D.Fight(Difficulty, Action, idEntity, idAI);
+			}
+		}
 		if(arg0.getSource() == buttons.get(3))
 		{ 
-			if (id_entity!=0){
-				if (menu==0)
-				{
+			if (idEntity!=0){
 				SwingUtilities.windowForComponent(this).dispose();
 				menu=1;
-				MU.menuFight(id_entity);
+				MU.menuFight(idEntity);
+				idAI=MU.getIdChoiceAI();
 				}
-				if (menu==1)
-				{
-				
-				}
-			}
 		}
 		if(arg0.getSource() == buttons.get(4))
 		{
+		 entities.clear();
 		 entities.add(new fighter(X/2-68,Y/2-84));
-		 id_entity=1;
+		 idEntity=1;
 		}
 		if(arg0.getSource() == buttons.get(5))
 		{
+		 entities.clear();
 		 entities.add(new healer(X/2-108,Y/2-88));
-		 id_entity=2;
+		 idEntity=2;
 		}
 		if(arg0.getSource() == buttons.get(6))
 		{
+		 entities.clear();
 		 entities.add(new tank(X/2-85,Y/2-45));
-		 id_entity=3;
+		 idEntity=3;
 		}
 		if(arg0.getSource() == buttons.get(7))
 		{
+		 entities.clear();
 		 entities.add(new vampire(X/2-76,Y/2-84));
-		 id_entity=4;
+		 idEntity=4;
 		}
 		repaint();
 	}

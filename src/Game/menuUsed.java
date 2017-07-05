@@ -6,6 +6,7 @@ import java.util.Random;
 import javax.swing.JButton;
 
 import Model.*;
+import View.window;
 import View.windowElements;
 
 public class menuUsed {
@@ -50,10 +51,14 @@ public class menuUsed {
 		idChoice=id_entity;
 		idChoiceAI=r.nextInt(5-1)+1;
 		choice(idChoice,100);
-		choice(idChoiceAI,600);
+		choice(idChoiceAI,635);
 		W.window(buttons,entities);
 	}
 	
+	public int getIdChoiceAI() {
+		return idChoiceAI;
+	}
+
 	public void menuRetry(){}
 	
 	public void choice(int idChoice,int X)
