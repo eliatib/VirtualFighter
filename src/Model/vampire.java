@@ -8,11 +8,24 @@ import javax.swing.ImageIcon;
 public class vampire extends entity{
 
 	characImage CI = new characImage(); 
-	int Life=4;
-	int Dmg=2;
 	
-	public vampire(int x, int y) {
-		super(x, y);
+	public vampire(int x, int y, int id, int Life, int Dmg) {
+		super(x, y, id, Life, Dmg);
+	}
+	
+	public int getId()
+	{
+		return super.getId();
+	}
+	
+	public int getLife()
+	{
+		return super.getLife();
+	}
+	
+	public int getDmg()
+	{
+		return super.getDmg();
 	}
 	
 	public void draw(Graphics2D g2d)

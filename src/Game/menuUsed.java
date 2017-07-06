@@ -14,10 +14,12 @@ public class menuUsed {
 	ArrayList<entity> entities = new ArrayList<entity>();
 	Random r = new Random();
 	window W = new window();
+	private int menu;
 	private int idChoice,idChoiceAI;
 	public void menuChoice()
 	{
 		buttons.clear();
+		menu=0;
 		JButton button1,button2,button3,button4,button5,button6,button7,button8;
 		button1 = new JButton("Alea");
 		buttons.add(button1);
@@ -35,12 +37,13 @@ public class menuUsed {
 		buttons.add(button7);
 		button8 = new JButton("Vampire");
 		buttons.add(button8);
-		W.window(buttons,entities);
+		W.window(buttons,entities,menu);
 	}
 	
 	public void menuFight(int id_entity)
 	{
 		buttons.clear();
+		menu=1;
 		JButton button1,button2,button3;
 		button1 = new JButton("Attack");
 		buttons.add(button1);
@@ -52,7 +55,7 @@ public class menuUsed {
 		idChoiceAI=r.nextInt(5-1)+1;
 		choice(idChoice,100);
 		choice(idChoiceAI,635);
-		W.window(buttons,entities);
+		W.window(buttons,entities,menu);
 	}
 	
 	public int getIdChoiceAI() {
@@ -65,19 +68,19 @@ public class menuUsed {
 	{
 		if (idChoice==1)
 		{
-			entities.add(new fighter(X,900/2-84));
+			entities.add(new fighter(X,900/2-84,1,3,2));
 		}
 		if (idChoice==2)
 		{
-			entities.add(new healer(X,900/2-88));
+			entities.add(new healer(X,900/2-88,2,4,1));
 		}
 		if (idChoice==3)
 		{
-			entities.add(new tank(X,900/2-45));
+			entities.add(new tank(X,900/2-45,3,5,1));
 		}
 		if (idChoice==4)
 		{
-			entities.add(new vampire(X,900/2-84));
+			entities.add(new vampire(X,900/2-84,4,4,2));
 		}
 	}
 }

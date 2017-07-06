@@ -29,17 +29,18 @@ public class windowElements extends JPanel implements ActionListener
 	ArrayList<entity> entities = new ArrayList<entity>();
 	ArrayList<JButton> buttons = new ArrayList<JButton>();
 	private int X,Y,idEntity,idAI;
-	private int menu=0,Action,Difficulty=1;
+	private int menu,Action,Difficulty=1;
 	difficulty D = new difficulty();
 	String Dif = "ALEA";
 	menuUsed MU = new menuUsed();
 	JLabel background;
 	
-	public windowElements(ArrayList<entity> entities,ArrayList<JButton> buttons,int X,int Y)
+	public windowElements(ArrayList<entity> entities,ArrayList<JButton> buttons,int X,int Y,int menu)
 	{
 		this.setLayout(null);
 		this.entities=entities;
 		this.buttons=buttons;
+		this.menu=menu;
 		this.X=X;
 		this.Y=Y;
 		setFocusable(true);	
@@ -104,7 +105,7 @@ public class windowElements extends JPanel implements ActionListener
 			if (menu==1)
 			{
 			Action=1;
-			D.Fight(Difficulty, Action, idEntity, idAI);
+			D.Fight(Difficulty, Action, entities);
 			}
 		}
 		if(arg0.getSource() == buttons.get(1))
@@ -117,7 +118,7 @@ public class windowElements extends JPanel implements ActionListener
 			if (menu==1)
 			{
 			Action=2;
-			D.Fight(Difficulty, Action, idEntity, idAI);
+			D.Fight(Difficulty, Action, entities);
 			}
 		}
 		if(arg0.getSource() == buttons.get(2))
@@ -130,41 +131,45 @@ public class windowElements extends JPanel implements ActionListener
 			if (menu==1)
 			{
 			Action=3;
-			D.Fight(Difficulty, Action, idEntity, idAI);
+			D.Fight(Difficulty, Action, entities);
 			}
 		}
-		if(arg0.getSource() == buttons.get(3))
-		{ 
-			if (idEntity!=0){
-				SwingUtilities.windowForComponent(this).dispose();
-				menu=1;
-				MU.menuFight(idEntity);
-				idAI=MU.getIdChoiceAI();
+		
+		if (menu==0){
+			if(arg0.getSource() == buttons.get(3))
+				{ 
+				if (idEntity!=0)
+				{
+					SwingUtilities.windowForComponent(this).dispose();
+					menu=1;
+					MU.menuFight(idEntity);
+					idAI=MU.getIdChoiceAI();
+					}
 				}
-		}
-		if(arg0.getSource() == buttons.get(4))
-		{
-		 entities.clear();
-		 entities.add(new fighter(X/2-68,Y/2-84));
-		 idEntity=1;
-		}
-		if(arg0.getSource() == buttons.get(5))
-		{
-		 entities.clear();
-		 entities.add(new healer(X/2-108,Y/2-88));
-		 idEntity=2;
-		}
-		if(arg0.getSource() == buttons.get(6))
-		{
-		 entities.clear();
-		 entities.add(new tank(X/2-85,Y/2-45));
-		 idEntity=3;
-		}
-		if(arg0.getSource() == buttons.get(7))
-		{
-		 entities.clear();
-		 entities.add(new vampire(X/2-76,Y/2-84));
-		 idEntity=4;
+			if(arg0.getSource() == buttons.get(4))
+				{
+				entities.clear();
+		 		entities.add(new fighter(X/2-68,Y/2-84,1,3,2));
+		 		idEntity=1;
+				}
+			if(arg0.getSource() == buttons.get(5))
+				{
+				entities.clear();
+		 		entities.add(new healer(X/2-108,Y/2-88,2,4,1));
+		 		idEntity=2;
+				}
+			if(arg0.getSource() == buttons.get(6))
+				{
+				entities.clear();
+		 		entities.add(new tank(X/2-85,Y/2-45,3,5,1));
+		 		idEntity=3;
+				}
+			if(arg0.getSource() == buttons.get(7))
+				{
+				entities.clear();
+				entities.add(new vampire(X/2-76,Y/2-84,4,4,2));
+				idEntity=4;
+				}
 		}
 		repaint();
 	}
