@@ -9,8 +9,8 @@ public class tank extends entity{
 
 	characImage CI = new characImage(); 
 	
-	public tank(int x, int y, int id, int Life, int Dmg) {
-		super(x, y, id, Life, Dmg);
+	public tank(int x, int y, int id, int Life,int FLife, int Dmg) {
+		super(x, y, id, Life, FLife, Dmg);
 	}
 	
 	public int getId()
@@ -21,6 +21,11 @@ public class tank extends entity{
 	public int getLife()
 	{
 		return super.getLife();
+	}
+	
+	public int getFLife()
+	{
+		return super.getFLife();
 	}
 	
 	public int getDmg()

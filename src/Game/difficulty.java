@@ -4,95 +4,90 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import Model.entity;
+import Model.fighter;
+import Model.healer;
+import Model.tank;
+import Model.vampire;
 
 public class difficulty {
 	
 	private int Life,Dmg,LifeAI,DmgAI,FLife,FLifeAI,id_entity,id_AI;
 	ArrayList<entity> entities = new ArrayList<entity>();
-	
-	public void setFLife(int id_entity, int id_AI) 
+		
+	public void special(int id,int Action,int ActionE,boolean AI)
 	{
-		System.out.println(id_entity);
-		if(id_entity==1)
-		{
-			FLife=3;
-		}
-		if(id_entity==2)
-		{
-			FLife=4;
-		}
-		if(id_entity==3)
-		{
-			FLife=5;
-		}
-		if(id_entity==4)
-		{
-			FLife=4;
-		}
-		if(id_AI==1)
-		{
-			FLifeAI=3;
-		}
-		if(id_AI==2)
-		{
-			FLifeAI=4;
-		}
-		if(id_AI==3)
-		{
-			FLifeAI=5;
-		}
-		if(id_AI==4)
-		{
-			FLifeAI=4;
-		}
-		System.out.println(Life);
-	}
-
-	
-	public void special(int id,int Action,int ActionE,int Life,int LifeE,int FLife,int DmgE,boolean AI)
-	{
-		System.out.println(id);
 		if (id==1 && Action==1)
 		{
-			LifeE=LifeE-DmgE;
+			if(AI==true){Life=Life-DmgAI;}
+			else{LifeAI=LifeAI-Dmg;}
 			System.out.println("Special: Dmg reverberate");
 		}
+		
 		if (id==2)
 		{
-			Life=Life+2;
-			if (Life>FLife){Life=FLife;}
-			System.out.println("Special: Heal(Heal 2)");
+			if(AI==true) 
+			{
+				LifeAI=LifeAI+2;
+				if (LifeAI>FLifeAI){LifeAI=FLifeAI;}
+			}
+			else
+			{
+				Life=Life+2;
+				if (Life>FLife){Life=FLife;}
+			}
+			System.out.println("Special: Heal(Life +2)");
 		}
+		
 		if (id==3)
 		{
-			LifeE=LifeE-1;
+			if(AI==true)
+			LifeAI=LifeAI-1;
+			Life=Life-1;
 			System.out.println("Special: PowerBlow(Dmg+1,Life-1)");
 			if (ActionE==2)
 			{
-				LifeE=LifeE+1;
 				System.out.println("protection : ON");
-				System.out.println("Noting Happen");
+				if(AI==false)
+				{
+				System.out.println("You hurt yourself");
+				LifeAI=LifeAI+1;
+				}
+				else
+				{
+				System.out.println("ennemy hurt itself");
+				Life=Life+1;
+				}
 			}
 		}
-		if (id==3)
+		if (id==4)
 		{
-			LifeE=LifeE+1;
+			if(AI==true)
+			{
+			LifeAI=LifeAI+1;
+			Life=Life-1;
+			if(LifeAI>FLifeAI){LifeAI=FLifeAI;}
+			}
+			else
+			{
+			LifeAI=LifeAI-1;
 			Life=Life+1;
+			if(Life>FLife){Life=FLife;}
+			}
 			System.out.println("Special: Vampirism(Dmg-1,Life+1)");
 			if (ActionE==2)
 			{
-				LifeE=LifeE+1;
+				if(AI==true)
+				{
+				LifeAI=LifeAI-1;
+				Life=Life+1;
+				}
+				else
+				{
+				LifeAI=LifeAI+1;
 				Life=Life-1;
+				}
 				System.out.println("protection : ON");
 				System.out.println("Noting Happen");
-			}
-			if (AI==true)
-			{
-				LifeAI=Life;
-			}
-			else 
-			{
-				this.Life=Life;
 			}
 		}
 	}
@@ -121,7 +116,7 @@ public class difficulty {
 		if (Action==3)
 		{
 			AI=false;
-			special(id_entity,Action_AI,Action,Life,LifeAI,FLife,DmgAI,AI);
+			special(id_entity,Action,Action_AI,AI);
 		}
 		if (Action_AI==1)
 		{
@@ -136,7 +131,7 @@ public class difficulty {
 		if (Action_AI==3)
 		{
 			AI=true;
-			special(id_AI,Action,Action_AI,LifeAI,Life,FLifeAI,Dmg,AI);
+			special(id_AI,Action_AI,Action,AI);
 		}
 		System.out.println("Your Life: "+Life);
 		System.out.println("AI Life: "+LifeAI);
@@ -144,7 +139,6 @@ public class difficulty {
 	
 	public void Alea(int Action,int id_entity,int id_AI)
 	{
-		System.out.println(id_entity);
 		Random r = new Random();
 		int Action_AI=1+r.nextInt(4-1);
 		go(Action,Action_AI,id_entity,id_AI);
@@ -163,8 +157,6 @@ public class difficulty {
 	public void Fight(int Difficulty,int Action,ArrayList<entity> entities)
 	{
 		setEntity(entities);
-		setFLife(id_entity,id_AI);
-		System.out.println(id_entity);
 		if (Difficulty==1)
 		{
 			Alea(Action,id_entity,id_AI);
@@ -190,12 +182,14 @@ public class difficulty {
 			{
 				id_entity = TempEntity.getId();
 				Life = TempEntity.getLife();
+				FLife = TempEntity.getFLife();
 				Dmg = TempEntity.getDmg();
 			}
 			else
 			{
 				id_AI = TempEntity.getId();
 				LifeAI = TempEntity.getLife();
+				FLifeAI = TempEntity.getFLife();
 				DmgAI = TempEntity.getDmg();
 			}
 		}
@@ -205,7 +199,35 @@ public class difficulty {
 	{
 		if (id_entity==1)
 		{
-			
+			entities.add(new fighter(100,900/2-84,1,Life,3,2));
+		}
+		if (id_entity==2)
+		{
+			entities.add(new healer(100,900/2-88,2,Life,4,1));
+		}
+		if (id_entity==3)
+		{
+			entities.add(new tank(100,900/2-45,3,Life,5,1));
+		}
+		if (id_entity==4)
+		{
+			entities.add(new vampire(100,900/2-84,4,Life,4,2));
+		}
+		if (id_AI==1)
+		{
+			entities.add(new fighter(635,900/2-84,1,LifeAI,3,2));
+		}
+		if (id_AI==2)
+		{
+			entities.add(new healer(635,900/2-88,2,LifeAI,4,1));
+		}
+		if (id_AI==3)
+		{
+			entities.add(new tank(635,900/2-45,3,LifeAI,5,1));
+		}
+		if (id_AI==4)
+		{
+			entities.add(new vampire(635,900/2-84,4,LifeAI,4,2));
 		}
 	}
 }

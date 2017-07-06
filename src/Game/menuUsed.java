@@ -68,19 +68,19 @@ public class menuUsed {
 	{
 		if (idChoice==1)
 		{
-			entities.add(new fighter(X,900/2-84,1,3,2));
+			entities.add(new fighter(X,900/2-84,1,3,3,2));
 		}
 		if (idChoice==2)
 		{
-			entities.add(new healer(X,900/2-88,2,4,1));
+			entities.add(new healer(X,900/2-88,2,4,4,1));
 		}
 		if (idChoice==3)
 		{
-			entities.add(new tank(X,900/2-45,3,5,1));
+			entities.add(new tank(X,900/2-45,3,5,5,1));
 		}
 		if (idChoice==4)
 		{
-			entities.add(new vampire(X,900/2-84,4,4,2));
+			entities.add(new vampire(X,900/2-84,4,4,4,2));
 		}
 	}
 }

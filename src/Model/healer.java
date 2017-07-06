@@ -10,8 +10,8 @@ public class healer extends entity{
 	characImage CI = new characImage(); 
 
 	
-	public healer(int x, int y, int id, int Life, int Dmg) {
-		super(x, y, id, Life, Dmg);
+	public healer(int x, int y, int id, int Life,int FLife, int Dmg) {
+		super(x, y, id, Life, FLife, Dmg);
 	}
 	
 	public int getId()
@@ -22,6 +22,11 @@ public class healer extends entity{
 	public int getLife()
 	{
 		return super.getLife();
+	}
+	
+	public int getFLife()
+	{
+		return super.getFLife();
 	}
 	
 	public int getDmg()

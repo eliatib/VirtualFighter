@@ -149,25 +149,25 @@ public class windowElements extends JPanel implements ActionListener
 			if(arg0.getSource() == buttons.get(4))
 				{
 				entities.clear();
-		 		entities.add(new fighter(X/2-68,Y/2-84,1,3,2));
+		 		entities.add(new fighter(X/2-68,Y/2-84,1,3,3,2));
 		 		idEntity=1;
 				}
 			if(arg0.getSource() == buttons.get(5))
 				{
 				entities.clear();
-		 		entities.add(new healer(X/2-108,Y/2-88,2,4,1));
+		 		entities.add(new healer(X/2-108,Y/2-88,2,4,4,1));
 		 		idEntity=2;
 				}
 			if(arg0.getSource() == buttons.get(6))
 				{
 				entities.clear();
-		 		entities.add(new tank(X/2-85,Y/2-45,3,5,1));
+		 		entities.add(new tank(X/2-85,Y/2-45,3,5,5,1));
 		 		idEntity=3;
 				}
 			if(arg0.getSource() == buttons.get(7))
 				{
 				entities.clear();
-				entities.add(new vampire(X/2-76,Y/2-84,4,4,2));
+				entities.add(new vampire(X/2-76,Y/2-84,4,4,4,2));
 				idEntity=4;
 				}
 		}

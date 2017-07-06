@@ -9,8 +9,8 @@ public class fighter extends entity {
 
 	characImage CI = new characImage(); 
 	
-	public fighter(int x, int y, int id, int Life, int Dmg) {
-		super(x, y, id, Life, Dmg);
+	public fighter(int x, int y, int id, int Life,int FLife, int Dmg) {
+		super(x, y, id, Life,FLife, Dmg);
 	}
 	
 	public int getId()
@@ -21,6 +21,11 @@ public class fighter extends entity {
 	public int getLife()
 	{
 		return super.getLife();
+	}
+	
+	public int getFLife()
+	{
+		return super.getFLife();
 	}
 	
 	public int getDmg()

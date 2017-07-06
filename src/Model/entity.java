@@ -3,14 +3,15 @@ package Model;
 import java.awt.Graphics2D;
 
 public class entity {
-	protected int x,y,id,Life,Dmg;
+	protected int x,y,id,Life,FLife,Dmg;
 	
-	public entity(int x, int y, int id, int Life, int Dmg)
+	public entity(int x, int y, int id, int Life,int FLife, int Dmg)
 	{
 		this.x = x;
 		this.y = y;
 		this.id = id;
 		this.Life = Life;
+		this.FLife = FLife;
 		this.Dmg = Dmg;
 	}
 	
@@ -26,6 +27,11 @@ public class entity {
 	public int getLife()
 	{
 		return Life;
+	}
+	
+	public int getFLife()
+	{
+		return FLife;
 	}
 	
 	public int getDmg()
