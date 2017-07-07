@@ -56,7 +56,7 @@ public class windowElements extends JPanel implements ActionListener
 			if (i<3)
 				{
 				tempButton.setBounds((X/3)*i,Y-80,X/3,50);
-				if (menu==2 || menu==3)
+				if (menu==2 || menu==3 || menu==4)
 					{
 					tempButton.setBounds(X/2-175+(190*i),Y/2-25,150,50);
 					}
@@ -67,7 +67,7 @@ public class windowElements extends JPanel implements ActionListener
 				}
 			else if(i==8)
 			{
-			tempButton.setBounds(X-150, 50, X/6, 50);
+			tempButton.setBounds(X-300, 0, X/6, 50);
 			}
 			else
 				{
@@ -98,10 +98,11 @@ public class windowElements extends JPanel implements ActionListener
 				tempPlayer.drawReverse(g2d);
 				}
 		}
-		if (menu==2 || menu==3)
+		if (menu==2 || menu==3 || menu==4)
 			{
 			if (menu==2){Result = "YOU WIN";}
 			if (menu==3){Result = "YOU LOSE";}
+			if (menu==4){Result = "D R A W";}
 			g.setColor(Color.WHITE);
 			g.setFont(new Font("Monospaced",Font.BOLD,96));
 			g.drawString(Result, 250, 350);

@@ -64,11 +64,12 @@ public class menuUsed {
 		return idChoiceAI;
 	}
 
-	public void menuRetry(Boolean Result)
+	public void menuRetry(int Result)
 	{
 		buttons.clear();
-		if(Result==true){menu=2;}
-		else{menu=3;}
+		if(Result==1){menu=2;}
+		if(Result==2){menu=3;}
+		if(Result==3){menu=4;}
 		JButton button1,button2;
 		button1 = new JButton("Quit");
 		buttons.add(button1);

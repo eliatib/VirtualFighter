@@ -234,7 +234,7 @@ public class difficulty {
 		{
 			Hard(Action,id_entity,id_AI);
 		}
-		if(LifeAI<=0)
+		if(LifeAI<=0&&Life>0)
 		{
 			stat.takeVariable();
 			int a=0,b=0,c=0,d=0;
@@ -243,10 +243,10 @@ public class difficulty {
 			if (id_entity==3){c++;}
 			if (id_entity==4){d++;}
 			stat.write(a, b, c, d);
-			Boolean Result=true;
+			int Result=1;
 			MU.menuRetry(Result);
 		}
-		if(Life<=0)
+		if(Life<=0&&LifeAI>0)
 		{
 			stat.takeVariable();
 			int a=0,b=0,c=0,d=0;
@@ -255,7 +255,19 @@ public class difficulty {
 			if (id_AI==3){c++;}
 			if (id_AI==4){d++;}
 			stat.write(a, b, c, d);
-			Boolean Result=false;
+			int Result=2;
+			MU.menuRetry(Result);
+		}
+		if(Life<=0&&LifeAI<=0)
+		{
+			stat.takeVariable();
+			int a=0,b=0,c=0,d=0;
+			if (id_AI==1||id_entity==1){a++;}
+			if (id_AI==2||id_entity==2){b++;}
+			if (id_AI==3||id_entity==3){c++;}
+			if (id_AI==4||id_entity==4){d++;}
+			stat.write(a, b, c, d);
+			int Result=3;
 			MU.menuRetry(Result);
 		}
 		else

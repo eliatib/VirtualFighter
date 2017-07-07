@@ -18,16 +18,16 @@ public class stat {
 		this.b=this.b+b;
 		this.c=this.c+c;
 		this.d=this.d+d;
-		if(this.a>9||this.b>9||this.c>9||this.d>9)
-		{
-			VL=2;
-		}
 		PrintWriter fichier = new PrintWriter(new FileWriter("stat.txt" ), false);
 		fichier.println(VL-10);
-		fichier.println("Fighter : "+this.a+"  Win" );
-		fichier.println("Healer  : "+this.b+"  Win" );
-		fichier.println("Tank    : "+this.c+"  Win" );
-		fichier.println("Vampire : "+this.d+"  Win" );
+		if(this.a<10){fichier.println("Fighter : 0"+this.a+"  Win" );}
+		else{fichier.println("Fighter : "+this.a+"  Win" );}
+		if(this.b<10){fichier.println("Healer  : 0"+this.b+"  Win" );}
+		else{fichier.println("Healer  : "+this.b+"  Win" );}
+		if(this.c<10){fichier.println("Tank    : 0"+this.c+"  Win" );}
+		else{fichier.println("Tank    : "+this.b+"  Win" );}
+		if(this.d<10){fichier.println("Vampire : 0"+this.d+"  Win" );}
+		else{fichier.println("Vampire : "+this.b+"  Win" );}
 		fichier.close();
 		}
 		catch(Exception e) {}

@@ -60,16 +60,6 @@ public class fighter extends entity {
 		}
 	}
 	
-	public int getFighterLife()
-	{
-		return Life;
-	}
-	
-	public int getFighterDmg()
-	{
-		return Dmg;
-	}
-	
 	public Image getFighterImg(String image)
 	{
 		ImageIcon ic = new ImageIcon(image);

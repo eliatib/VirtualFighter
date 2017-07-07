@@ -1,5 +1,5 @@
-1
-Fighter : 5  Win
-Healer  : 0  Win
-Tank    : 1  Win
-Vampire : 4  Win
+2
+Fighter : 05  Win
+Healer  : 01  Win
+Tank    : 01  Win
+Vampire : 06  Win
