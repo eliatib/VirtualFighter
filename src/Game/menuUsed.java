@@ -14,13 +14,13 @@ public class menuUsed {
 	ArrayList<entity> entities = new ArrayList<entity>();
 	Random r = new Random();
 	window W = new window();
-	private int menu;
-	private int idChoice,idChoiceAI;
+	private int menu,idChoice,idChoiceAI;
+	String Result;
 	public void menuChoice()
 	{
 		buttons.clear();
 		menu=0;
-		JButton button1,button2,button3,button4,button5,button6,button7,button8;
+		JButton button1,button2,button3,button4,button5,button6,button7,button8,button9;
 		button1 = new JButton("Alea");
 		buttons.add(button1);
 		button2 = new JButton("Normal");
@@ -37,6 +37,8 @@ public class menuUsed {
 		buttons.add(button7);
 		button8 = new JButton("Vampire");
 		buttons.add(button8);
+		button9 = new JButton("Stat");
+		buttons.add(button9);
 		W.window(buttons,entities,menu);
 	}
 	
@@ -62,8 +64,19 @@ public class menuUsed {
 		return idChoiceAI;
 	}
 
-	public void menuRetry(){}
-	
+	public void menuRetry(Boolean Result)
+	{
+		buttons.clear();
+		if(Result==true){menu=2;}
+		else{menu=3;}
+		JButton button1,button2;
+		button1 = new JButton("Quit");
+		buttons.add(button1);
+		button2 = new JButton("Retry");
+		buttons.add(button2);
+		W.window(buttons,entities,menu);
+	}
+
 	public void choice(int idChoice,int X)
 	{
 		if (idChoice==1)
@@ -83,4 +96,5 @@ public class menuUsed {
 			entities.add(new vampire(X,900/2-84,4,4,4,2));
 		}
 	}
+
 }

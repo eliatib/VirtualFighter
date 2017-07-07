@@ -8,18 +8,21 @@ import Model.fighter;
 import Model.healer;
 import Model.tank;
 import Model.vampire;
+import Game.stat;
 
 public class difficulty {
 	
 	private int Life,Dmg,LifeAI,DmgAI,FLife,FLifeAI,id_entity,id_AI;
 	ArrayList<entity> entities = new ArrayList<entity>();
+	menuUsed MU = new menuUsed();
+	stat stat = new stat();
 		
-	public void special(int id,int Action,int ActionE,boolean AI)
+	public void special(int id,int idE,int Action,int ActionE,boolean AI)
 	{
-		if (id==1 && Action==1)
+		if (id==1 && ActionE==1)
 		{
-			if(AI==true){Life=Life-DmgAI;}
-			else{LifeAI=LifeAI-Dmg;}
+			if(AI==true){Life=Life-Dmg;}
+			else{LifeAI=LifeAI-DmgAI;}
 			System.out.println("Special: Dmg reverberate");
 		}
 		
@@ -41,8 +44,16 @@ public class difficulty {
 		if (id==3)
 		{
 			if(AI==true)
+			{
 			LifeAI=LifeAI-1;
+			Life=Life-DmgAI-1;
+			}
+			else
+			{
+			LifeAI=LifeAI-Dmg-1;
 			Life=Life-1;
+			}
+			
 			System.out.println("Special: PowerBlow(Dmg+1,Life-1)");
 			if (ActionE==2)
 			{
@@ -50,30 +61,44 @@ public class difficulty {
 				if(AI==false)
 				{
 				System.out.println("You hurt yourself");
-				LifeAI=LifeAI+1;
+				LifeAI=LifeAI+Dmg+1;
 				}
 				else
 				{
 				System.out.println("ennemy hurt itself");
-				Life=Life+1;
+				Life=Life+DmgAI+1;
+				}
+			}
+			
+			if (ActionE==3 && idE==1)
+			{
+				if(AI==true)
+				{
+					LifeAI=LifeAI-DmgAI-1;
+				}
+				else
+				{
+					Life=Life-Dmg-1;
 				}
 			}
 		}
+			
 		if (id==4)
 		{
 			if(AI==true)
 			{
-			LifeAI=LifeAI+1;
-			Life=Life-1;
-			if(LifeAI>FLifeAI){LifeAI=FLifeAI;}
+				LifeAI=LifeAI+1;
+				Life=Life-1;
+				if(LifeAI>FLifeAI){LifeAI=FLifeAI;}
 			}
 			else
 			{
-			LifeAI=LifeAI-1;
-			Life=Life+1;
-			if(Life>FLife){Life=FLife;}
+				LifeAI=LifeAI-1;
+				Life=Life+1;
+				if(Life>FLife){Life=FLife;}
 			}
 			System.out.println("Special: Vampirism(Dmg-1,Life+1)");
+			
 			if (ActionE==2)
 			{
 				if(AI==true)
@@ -89,6 +114,18 @@ public class difficulty {
 				System.out.println("protection : ON");
 				System.out.println("Noting Happen");
 			}
+			
+			if (ActionE==3 && idE==1)
+			{
+				if(AI==true)
+				{
+				LifeAI=LifeAI-1;
+				}
+				else
+				{
+				Life=Life-1;
+				}
+			}
 		}
 	}
 	
@@ -97,7 +134,7 @@ public class difficulty {
 		boolean AI;
 		if (Action_AI==2)
 		{
-			System.out.println("AI protects itself");
+			System.out.println("AI protect itself");
 		}
 		if (Action==2)
 		{
@@ -108,7 +145,7 @@ public class difficulty {
 			System.out.println("You Attack");
 			if (Action_AI==2)
 			{
-				System.out.println("But the AI protects itself");
+				System.out.println("But the AI protect itself");
 				LifeAI=LifeAI+1-Dmg;
 			}
 			else{LifeAI=LifeAI-Dmg;}
@@ -116,7 +153,7 @@ public class difficulty {
 		if (Action==3)
 		{
 			AI=false;
-			special(id_entity,Action,Action_AI,AI);
+			special(id_entity,id_AI,Action,Action_AI,AI);
 		}
 		if (Action_AI==1)
 		{
@@ -131,7 +168,7 @@ public class difficulty {
 		if (Action_AI==3)
 		{
 			AI=true;
-			special(id_AI,Action_AI,Action,AI);
+			special(id_AI,id_entity,Action_AI,Action,AI);
 		}
 		System.out.println("Your Life: "+Life);
 		System.out.println("AI Life: "+LifeAI);
@@ -140,18 +177,46 @@ public class difficulty {
 	public void Alea(int Action,int id_entity,int id_AI)
 	{
 		Random r = new Random();
-		int Action_AI=1+r.nextInt(4-1);
+		int Action_AI=1+r.nextInt(3-1);
 		go(Action,Action_AI,id_entity,id_AI);
 	}
 	
 	public void Normal(int Action,int id_entity,int id_AI)
 	{
-		
+		Random r = new Random();
+		int Action_AI=1;
+		if (Action==1){Action_AI=2+r.nextInt(3-2);}
+		if (Action==3){Action_AI=3;}		
+		go(Action,Action_AI,id_entity,id_AI);
 	}
 	
 	public void Hard(int Action,int id_entity,int id_AI)
 	{
-		
+		int Action_AI=1;
+		if (Action==1)
+		{
+			if (id_entity==1 || id_entity==4)
+			{
+				Action_AI=3;
+			}
+			else {Action_AI=2;}
+		}
+		if (Action==2)
+		{
+			if (id_AI==2)
+			{
+				Action_AI=3;
+			}
+			else {Action_AI=1;}
+		}
+		if (Action==3)
+		{
+			if (id_entity==1 || id_entity==3 || id_entity==4)
+			{
+				Action_AI=2;
+			}
+		}
+		go(Action,Action_AI,id_entity,id_AI);
 	}
 	
 	public void Fight(int Difficulty,int Action,ArrayList<entity> entities)
@@ -169,8 +234,35 @@ public class difficulty {
 		{
 			Hard(Action,id_entity,id_AI);
 		}
+		if(LifeAI<=0)
+		{
+			stat.takeVariable();
+			int a=0,b=0,c=0,d=0;
+			if (id_entity==1){a++;}
+			if (id_entity==2){b++;}
+			if (id_entity==3){c++;}
+			if (id_entity==4){d++;}
+			stat.write(a, b, c, d);
+			Boolean Result=true;
+			MU.menuRetry(Result);
+		}
+		if(Life<=0)
+		{
+			stat.takeVariable();
+			int a=0,b=0,c=0,d=0;
+			if (id_AI==1){a++;}
+			if (id_AI==2){b++;}
+			if (id_AI==3){c++;}
+			if (id_AI==4){d++;}
+			stat.write(a, b, c, d);
+			Boolean Result=false;
+			MU.menuRetry(Result);
+		}
+		else
+		{
 		entities.clear();
 		Reset(entities);
+		}
 	}
 	
 	public void setEntity(ArrayList<entity> entities)
