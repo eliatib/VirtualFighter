@@ -25,12 +25,13 @@ import Game.stat;
 import Model.*;
 
 
+@SuppressWarnings("serial")
 public class windowElements extends JPanel implements ActionListener
 {
 	ArrayList<entity> entities = new ArrayList<entity>();
 	ArrayList<JButton> buttons = new ArrayList<JButton>();
 	private int X,Y,idEntity;
-	private int menu,Action,Difficulty=1;
+	private int menu,Action=0,Action_AI=0,Difficulty=1;
 	difficulty D = new difficulty();
 	String Dif = "ALEA",Result = "";
 	menuUsed MU = new menuUsed();
@@ -90,13 +91,19 @@ public class windowElements extends JPanel implements ActionListener
 		{
 			entity tempPlayer = entities.get(i);
 			if (i==0)
-				{
-				tempPlayer.draw(g2d);
-				}
+			{
+				if(Action==1){tempPlayer.drawAtk(g2d);}
+				if(Action==2){tempPlayer.drawDef(g2d);}
+				if(Action==3){tempPlayer.drawSpe(g2d);}
+				if(Action==0){tempPlayer.draw(g2d);}
+			}
 			else
-				{
-				tempPlayer.drawReverse(g2d);
-				}
+			{
+				if(Action_AI==1){tempPlayer.drawAtkReverse(g2d);}
+				if(Action_AI==2){tempPlayer.drawDefReverse(g2d);}
+				if(Action_AI==3){tempPlayer.drawSpeReverse(g2d);}
+				if(Action_AI==0){tempPlayer.drawReverse(g2d);}
+			}
 		}
 		if (menu==2 || menu==3 || menu==4)
 			{
@@ -127,9 +134,10 @@ public class windowElements extends JPanel implements ActionListener
 			if (menu==1)
 			{
 			Action=1;
-			D.Fight(Difficulty, Action, entities);
+			D.Fight(Difficulty, Action, Action_AI, entities);
+			Action_AI=D.getAction_AI();
 			}
-			if (menu==2)
+			if (menu==2 || menu==3 || menu==4)
 			{
 			System.exit(1);
 			}
@@ -144,9 +152,10 @@ public class windowElements extends JPanel implements ActionListener
 			if (menu==1)
 			{
 			Action=2;
-			D.Fight(Difficulty, Action, entities);
+			D.Fight(Difficulty, Action, Action_AI, entities);
+			Action_AI=D.getAction_AI();
 			}
-			if (menu==2 || menu==3)
+			if (menu==2 || menu==3 || menu==4)
 			{
 			SwingUtilities.windowForComponent(this).dispose();
 			MU.menuChoice();
@@ -164,7 +173,8 @@ public class windowElements extends JPanel implements ActionListener
 				if (menu==1)
 				{
 				Action=3;
-				D.Fight(Difficulty, Action, entities);
+				D.Fight(Difficulty, Action, Action_AI, entities);
+				Action_AI=D.getAction_AI();
 				}
 			}
 			

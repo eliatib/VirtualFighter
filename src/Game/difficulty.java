@@ -3,17 +3,22 @@ package Game;
 import java.util.ArrayList;
 import java.util.Random;
 
+import javax.swing.JButton;
+import javax.swing.SwingUtilities;
+
 import Model.entity;
 import Model.fighter;
 import Model.healer;
 import Model.tank;
 import Model.vampire;
+import View.windowElements;
 import Game.stat;
 
 public class difficulty {
 	
-	private int Life,Dmg,LifeAI,DmgAI,FLife,FLifeAI,id_entity,id_AI;
+	private int Life,Dmg,LifeAI,DmgAI,FLife,FLifeAI,id_entity,id_AI,Action_AI;
 	ArrayList<entity> entities = new ArrayList<entity>();
+	ArrayList<JButton> buttons = new ArrayList<JButton>();
 	menuUsed MU = new menuUsed();
 	stat stat = new stat();
 		
@@ -174,25 +179,28 @@ public class difficulty {
 		System.out.println("AI Life: "+LifeAI);
 	}
 	
-	public void Alea(int Action,int id_entity,int id_AI)
+	public void Alea(int Action,int Action_AI,int id_entity,int id_AI)
 	{
+		Action_AI=1;
 		Random r = new Random();
-		int Action_AI=1+r.nextInt(3-1);
+		Action_AI=1+r.nextInt(4-1);
+		this.Action_AI=Action_AI;
 		go(Action,Action_AI,id_entity,id_AI);
 	}
 	
-	public void Normal(int Action,int id_entity,int id_AI)
+	public void Normal(int Action,int Action_AI,int id_entity,int id_AI)
 	{
+		Action_AI=1;
 		Random r = new Random();
-		int Action_AI=1;
-		if (Action==1){Action_AI=2+r.nextInt(3-2);}
-		if (Action==3){Action_AI=3;}		
+		if (Action==1){Action_AI=2+r.nextInt(4-2);}
+		if (Action==3){Action_AI=3;}
+		this.Action_AI=Action_AI;
 		go(Action,Action_AI,id_entity,id_AI);
 	}
 	
-	public void Hard(int Action,int id_entity,int id_AI)
+	public void Hard(int Action,int Action_AI,int id_entity,int id_AI)
 	{
-		int Action_AI=1;
+		Action_AI=1;
 		if (Action==1)
 		{
 			if (id_entity==1 || id_entity==4)
@@ -216,67 +224,75 @@ public class difficulty {
 				Action_AI=2;
 			}
 		}
+		this.Action_AI=Action_AI;
 		go(Action,Action_AI,id_entity,id_AI);
 	}
 	
-	public void Fight(int Difficulty,int Action,ArrayList<entity> entities)
+	public void Fight(int Difficulty,int Action,int Action_AI,ArrayList<entity> entities)
 	{
-		setEntity(entities);
-		if (Difficulty==1)
-		{
-			Alea(Action,id_entity,id_AI);
-		}
-		if (Difficulty==2)
-		{
-			Normal(Action,id_entity,id_AI);
-		}
-		if (Difficulty==3)
-		{
-			Hard(Action,id_entity,id_AI);
-		}
-		if(LifeAI<=0&&Life>0)
-		{
-			stat.takeVariable();
-			int a=0,b=0,c=0,d=0;
-			if (id_entity==1){a++;}
-			if (id_entity==2){b++;}
-			if (id_entity==3){c++;}
-			if (id_entity==4){d++;}
-			stat.write(a, b, c, d);
-			int Result=1;
-			MU.menuRetry(Result);
-		}
-		if(Life<=0&&LifeAI>0)
-		{
-			stat.takeVariable();
-			int a=0,b=0,c=0,d=0;
-			if (id_AI==1){a++;}
-			if (id_AI==2){b++;}
-			if (id_AI==3){c++;}
-			if (id_AI==4){d++;}
-			stat.write(a, b, c, d);
-			int Result=2;
-			MU.menuRetry(Result);
-		}
-		if(Life<=0&&LifeAI<=0)
-		{
-			stat.takeVariable();
-			int a=0,b=0,c=0,d=0;
-			if (id_AI==1||id_entity==1){a++;}
-			if (id_AI==2||id_entity==2){b++;}
-			if (id_AI==3||id_entity==3){c++;}
-			if (id_AI==4||id_entity==4){d++;}
-			stat.write(a, b, c, d);
-			int Result=3;
-			MU.menuRetry(Result);
-		}
-		else
-		{
-		entities.clear();
-		Reset(entities);
-		}
-	}
+				setEntity(entities);
+				if (Difficulty==1)
+				{
+					Alea(Action,Action_AI,id_entity,id_AI);
+				}
+				if (Difficulty==2)
+				{
+					Normal(Action,Action_AI,id_entity,id_AI);
+				}
+				if (Difficulty==3)
+				{
+					Hard(Action,Action_AI,id_entity,id_AI);
+				}
+				if(LifeAI<=0&&Life>0)
+				{
+					stat.takeVariable();
+					int a=0,b=0,c=0,d=0;
+					if (id_entity==1){a++;}
+					if (id_entity==2){b++;}
+					if (id_entity==3){c++;}
+					if (id_entity==4){d++;}
+					stat.write(a, b, c, d);
+					int Result=1;
+					MU.menuRetry(Result);
+				}
+				if(Life<=0&&LifeAI>0)
+				{
+					stat.takeVariable();
+					int a=0,b=0,c=0,d=0;
+					if (id_AI==1){a++;}
+					if (id_AI==2){b++;}
+					if (id_AI==3){c++;}
+					if (id_AI==4){d++;}
+					stat.write(a, b, c, d);
+					int Result=2;
+					MU.menuRetry(Result);
+				}
+				if(Life<=0&&LifeAI<=0)
+				{
+					stat.takeVariable();
+					int a=0,b=0,c=0,d=0;
+					if (id_AI==1||id_entity==1){a++;}
+					if (id_AI==2||id_entity==2){b++;}
+					if (id_AI==3||id_entity==3){c++;}
+					if (id_AI==4||id_entity==4){d++;}
+					stat.write(a, b, c, d);
+					int Result=3;
+					MU.menuRetry(Result);
+				}
+				else
+				{
+				entities.clear();
+				Reset(entities);
+				}
+			}
+		
+
+
 	
+	public int getAction_AI() {
+		return Action_AI;
+	}
+
 	public void setEntity(ArrayList<entity> entities)
 	{
 		for(int i=0;i<entities.size();i++)

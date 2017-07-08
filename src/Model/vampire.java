@@ -35,16 +35,8 @@ public class vampire extends entity{
 	
 	public void draw(Graphics2D g2d)
 	{
-		g2d.drawImage(getVampireImg("image/vampire1.png"), x, y, null);
-		for (int i=0;i<Life;i++)
-		{
-			g2d.drawImage(CI.getLifeImg(), i*64, 0, null);
-		}
-		
-		for (int i=0;i<Dmg;i++)
-		{
-			g2d.drawImage(CI.getDmgImg(), i*64, 65, null);
-		}
+		g2d.drawImage(getVampireImg("image/vampire/vampire.png"), x, y, null);
+		super.drawInf(g2d);
 	}
 	
 	public int getVampireLife()
@@ -59,16 +51,56 @@ public class vampire extends entity{
 	
 	public void drawReverse(Graphics2D g2d)
 	{
-		g2d.drawImage(getVampireImg("image/vampire1Flip.png"), x, y, null);
-		for (int i=0;i<Life;i++)
-		{
-			g2d.drawImage(CI.getLifeImg(), 825-i*64, 0, null);
-		}
-		
-		for (int i=0;i<Dmg;i++)
-		{
-			g2d.drawImage(CI.getDmgImg(), 825-i*64, 65, null);
-		}
+		g2d.drawImage(getVampireImg("image/vampire/vampireFlip.png"), x, y, null);
+		super.drawInfR(g2d);
+	}
+	
+	public void drawAtk(Graphics2D g2d)
+	{
+		g2d.drawImage(getVampireImg("image/vampire/vampireAtk.png"), x+200, y, null);
+		super.drawInf(g2d);
+	}
+	
+	public void drawAtkReverse(Graphics2D g2d)
+	{
+		g2d.drawImage(getVampireImg("image/vampire/vampireAtkFlip.png"), x-200, y, null);
+		super.drawInfR(g2d);
+	}
+	
+	public void drawDef(Graphics2D g2d)
+	{
+		g2d.drawImage(getVampireImg("image/vampire/vampireDef.png"), x+200, y, null);
+		super.drawInf(g2d);
+	}
+	
+	public void drawDefReverse(Graphics2D g2d)
+	{
+		g2d.drawImage(getVampireImg("image/vampire/vampireDefFlip.png"), x-200, y, null);
+		super.drawInfR(g2d);
+	}
+	
+	public void drawSpe(Graphics2D g2d)
+	{
+		g2d.drawImage(getVampireImg("image/vampire/vampireSpe.png"), x+160, y, null);
+		super.drawInf(g2d);
+	}
+	
+	public void drawSpeReverse(Graphics2D g2d)
+	{
+		g2d.drawImage(getVampireImg("image/vampire/vampireSpeFlip.png"), x-180, y, null);
+		super.drawInfR(g2d);
+	}
+	
+	public void drawDead(Graphics2D g2d)
+	{
+		g2d.drawImage(getVampireImg("image/vampire/vampireDead.png"), x, y, null);
+		super.drawInf(g2d);
+	}
+	
+	public void drawDeadReverse(Graphics2D g2d)
+	{
+		g2d.drawImage(getVampireImg("image/vampire/vampireDeadFlip.png"), x, y, null);
+		super.drawInfR(g2d);
 	}
 	
 	public Image getVampireImg(String image)

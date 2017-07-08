@@ -36,40 +36,62 @@ public class healer extends entity{
 	
 	public void draw(Graphics2D g2d)
 	{
-		g2d.drawImage(getHealerImg("image/healer1.png"), x, y, null);
-		for (int i=0;i<Life;i++)
-		{
-			g2d.drawImage(CI.getLifeImg(), i*64, 0, null);
-		}
-		
-		for (int i=0;i<Dmg;i++)
-		{
-			g2d.drawImage(CI.getDmgImg(), i*64, 65, null);
-		}
-	}
-	
-	public int getHealerLife()
-	{
-		return Life;
-	}
-	
-	public int getHealerDmg()
-	{
-		return Dmg;
+		g2d.drawImage(getHealerImg("image/healer/healer.png"), x, y, null);
+		super.drawInf(g2d);
 	}
 	
 	public void drawReverse(Graphics2D g2d)
 	{
-		g2d.drawImage(getHealerImg("image/healer1Flip.png"), x, y, null);
-		for (int i=0;i<Life;i++)
-		{
-			g2d.drawImage(CI.getLifeImg(), 825-i*64, 0, null);
-		}
-		
-		for (int i=0;i<Dmg;i++)
-		{
-			g2d.drawImage(CI.getDmgImg(), 825-i*64, 65, null);
-		}
+		g2d.drawImage(getHealerImg("image/healer/healerFlip.png"), x, y, null);
+		super.drawInfR(g2d);
+	}
+	
+	public void drawAtk(Graphics2D g2d)
+	{
+		g2d.drawImage(getHealerImg("image/healer/healerAtk.png"), x+90, y, null);
+		super.drawInf(g2d);
+	}
+	
+	public void drawAtkReverse(Graphics2D g2d)
+	{
+		g2d.drawImage(getHealerImg("image/healer/healerAtkFlip.png"), x-190, y, null);
+		super.drawInfR(g2d);
+	}
+	
+	public void drawDef(Graphics2D g2d)
+	{
+		g2d.drawImage(getHealerImg("image/healer/healerDef.png"), x+140, y, null);
+		super.drawInf(g2d);
+	}
+	
+	public void drawDefReverse(Graphics2D g2d)
+	{
+		g2d.drawImage(getHealerImg("image/healer/healerDefFlip.png"), x-200, y, null);
+		super.drawInfR(g2d);
+	}
+	
+	public void drawSpe(Graphics2D g2d)
+	{
+		g2d.drawImage(getHealerImg("image/healer/healerSpe.png"), x+90, y, null);
+		super.drawInf(g2d);
+	}
+	
+	public void drawSpeReverse(Graphics2D g2d)
+	{
+		g2d.drawImage(getHealerImg("image/healer/healerSpeFlip.png"), x-190, y, null);
+		super.drawInfR(g2d);
+	}
+	
+	public void drawDead(Graphics2D g2d)
+	{
+		g2d.drawImage(getHealerImg("image/healer/healerDead.png"), x, y, null);
+		super.drawInf(g2d);
+	}
+	
+	public void drawDeadReverse(Graphics2D g2d)
+	{
+		g2d.drawImage(getHealerImg("image/healer/healerDeadFlip.png"), x, y, null);
+		super.drawInfR(g2d);
 	}
 	
 	public Image getHealerImg(String image)

@@ -34,30 +34,62 @@ public class fighter extends entity {
 	}
 	public void draw(Graphics2D g2d)
 	{
-		g2d.drawImage(getFighterImg("image/damager1.png"), x, y, null);
-		for (int i=0;i<Life;i++)
-		{
-			g2d.drawImage(CI.getLifeImg(), i*64, 0, null);
-		}
-		
-		for (int i=0;i<Dmg;i++)
-		{
-			g2d.drawImage(CI.getDmgImg(), i*64, 65, null);
-		}
+		g2d.drawImage(getFighterImg("image/fighter/fighter.png"), x, y, null);
+		super.drawInf(g2d);
 	}
 	
 	public void drawReverse(Graphics2D g2d)
 	{
-		g2d.drawImage(getFighterImg("image/damager1Flip.png"), x, y, null);
-		for (int i=0;i<Life;i++)
-		{
-			g2d.drawImage(CI.getLifeImg(), 825-i*64, 0, null);
-		}
-		
-		for (int i=0;i<Dmg;i++)
-		{
-			g2d.drawImage(CI.getDmgImg(), 825-i*64, 65, null);
-		}
+		g2d.drawImage(getFighterImg("image/fighter/fighterFlip.png"), x, y, null);
+		super.drawInfR(g2d);
+	}
+	
+	public void drawAtk(Graphics2D g2d)
+	{
+		g2d.drawImage(getFighterImg("image/fighter/fighterAtk.png"), x+200, y-50, null);
+		super.drawInf(g2d);
+	}
+	
+	public void drawAtkReverse(Graphics2D g2d)
+	{
+		g2d.drawImage(getFighterImg("image/fighter/fighterAtkFlip.png"), x-200, y-50, null);
+		super.drawInfR(g2d);
+	}
+	
+	public void drawDef(Graphics2D g2d)
+	{
+		g2d.drawImage(getFighterImg("image/fighter/fighterDef.png"), x+200, y, null);
+		super.drawInf(g2d);
+	}
+	
+	public void drawDefReverse(Graphics2D g2d)
+	{
+		g2d.drawImage(getFighterImg("image/fighter/fighterDefFlip.png"), x-200, y, null);
+		super.drawInfR(g2d);
+	}
+	
+	public void drawSpe(Graphics2D g2d)
+	{
+		g2d.drawImage(getFighterImg("image/fighter/fighterSpe.png"), x+200, y-50, null);
+		super.drawInf(g2d);
+	}
+	
+	public void drawSpeReverse(Graphics2D g2d)
+	{
+		g2d.drawImage(getFighterImg("image/fighter/fighterSpeFlip.png"), x+200, y-50, null);
+		super.drawInfR(g2d);
+	}
+	
+	public void drawDead(Graphics2D g2d)
+	{
+		g2d.drawImage(getFighterImg("image/fighter/fighterDead.png"), x, y, null);
+		super.drawInf(g2d);
+	}
+	
+	public void drawDeadReverse(Graphics2D g2d)
+	{
+		g2d.drawImage(getFighterImg("image/fighter/fighterDeadFlip.png"), x, y, null);
+		super.drawInfR(g2d);
 	}
 	
 	public Image getFighterImg(String image)
