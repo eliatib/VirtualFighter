@@ -1,5 +1,0 @@
-2
-Fighter : 00  Win
-Healer  : 00  Win
-Tank    : 00  Win
-Vampire : 00  Win
