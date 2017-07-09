@@ -81,7 +81,7 @@ public class fighter extends entity { //daughter class of entity
 	
 	public void drawSpeReverse(Graphics2D g2d)
 	{
-		g2d.drawImage(getFighterImg("image/fighter/fighterSpeFlip.png"), x+200, y-50, null);
+		g2d.drawImage(getFighterImg("image/fighter/fighterSpeFlip.png"), x-200, y-50, null);
 		super.drawInfR(g2d);
 	}
 		
