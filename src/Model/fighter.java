@@ -5,13 +5,15 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
-public class fighter extends entity {
+public class fighter extends entity { //daughter class of entity
 
 	characImage CI = new characImage(); 
 	
 	public fighter(int x, int y, int id, int Life,int FLife, int Dmg) {
-		super(x, y, id, Life,FLife, Dmg);
+		super(x, y, id, Life,FLife, Dmg); //see entity constructor
 	}
+	
+	//see entity
 	
 	public int getId()
 	{
@@ -32,17 +34,20 @@ public class fighter extends entity {
 	{
 		return super.getDmg();
 	}
-	public void draw(Graphics2D g2d)
+	
+	public void draw(Graphics2D g2d) //draw the fighter entity
 	{
 		g2d.drawImage(getFighterImg("image/fighter/fighter.png"), x, y, null);
 		super.drawInf(g2d);
 	}
 	
-	public void drawReverse(Graphics2D g2d)
+	public void drawReverse(Graphics2D g2d) //idem for AI
 	{
 		g2d.drawImage(getFighterImg("image/fighter/fighterFlip.png"), x, y, null);
 		super.drawInfR(g2d);
 	}
+	
+	//idem that draw and drawReverse method but for the fighter Action (Atk, Def, special Atk)
 	
 	public void drawAtk(Graphics2D g2d)
 	{
@@ -79,20 +84,8 @@ public class fighter extends entity {
 		g2d.drawImage(getFighterImg("image/fighter/fighterSpeFlip.png"), x+200, y-50, null);
 		super.drawInfR(g2d);
 	}
-	
-	public void drawDead(Graphics2D g2d)
-	{
-		g2d.drawImage(getFighterImg("image/fighter/fighterDead.png"), x, y, null);
-		super.drawInf(g2d);
-	}
-	
-	public void drawDeadReverse(Graphics2D g2d)
-	{
-		g2d.drawImage(getFighterImg("image/fighter/fighterDeadFlip.png"), x, y, null);
-		super.drawInfR(g2d);
-	}
-	
-	public Image getFighterImg(String image)
+		
+	public Image getFighterImg(String image) //get fighter images
 	{
 		ImageIcon ic = new ImageIcon(image);
 		return ic.getImage();	

@@ -18,20 +18,20 @@ public class difficulty {
 	
 	private int Life,Dmg,LifeAI,DmgAI,FLife,FLifeAI,id_entity,id_AI,Action_AI;
 	ArrayList<entity> entities = new ArrayList<entity>();
-	ArrayList<JButton> buttons = new ArrayList<JButton>();
 	menuUsed MU = new menuUsed();
 	stat stat = new stat();
 		
 	public void special(int id,int idE,int Action,int ActionE,boolean AI)
 	{
-		if (id==1 && ActionE==1)
+		//define the action of each entity special Atk depending of the id and Action of each entity
+		if (id==1 && ActionE==1) //if a fighter use his special and the Ennemy attack him
 		{
-			if(AI==true){Life=Life-Dmg;}
+			if(AI==true){Life=Life-Dmg;} //reverberate the damages take
 			else{LifeAI=LifeAI-DmgAI;}
 			System.out.println("Special: Dmg reverberate");
 		}
 		
-		if (id==2)
+		if (id==2) //if entity healer use his special, Recover 2 Life point
 		{
 			if(AI==true) 
 			{
@@ -46,8 +46,9 @@ public class difficulty {
 			System.out.println("Special: Heal(Life +2)");
 		}
 		
-		if (id==3)
+		if (id==3) //if entity tank use his special
 		{
+			//take one damage but do one extra damage at the ennemy
 			if(AI==true)
 			{
 			LifeAI=LifeAI-1;
@@ -60,7 +61,7 @@ public class difficulty {
 			}
 			
 			System.out.println("Special: PowerBlow(Dmg+1,Life-1)");
-			if (ActionE==2)
+			if (ActionE==2) //except if Ennemy protected him
 			{
 				System.out.println("protection : ON");
 				if(AI==false)
@@ -77,6 +78,7 @@ public class difficulty {
 			
 			if (ActionE==3 && idE==1)
 			{
+				System.out.println("Special: Dmg reverberate");
 				if(AI==true)
 				{
 					LifeAI=LifeAI-DmgAI-1;
@@ -88,8 +90,9 @@ public class difficulty {
 			}
 		}
 			
-		if (id==4)
+		if (id==4) //if the vampire use his special
 		{
+			//do less damage but recover 1 Life point
 			if(AI==true)
 			{
 				LifeAI=LifeAI+1;
@@ -104,7 +107,7 @@ public class difficulty {
 			}
 			System.out.println("Special: Vampirism(Dmg-1,Life+1)");
 			
-			if (ActionE==2)
+			if (ActionE==2) //except if Ennemy protected him
 			{
 				if(AI==true)
 				{
@@ -122,13 +125,16 @@ public class difficulty {
 			
 			if (ActionE==3 && idE==1)
 			{
+				System.out.println("Special: Dmg reverberate");
 				if(AI==true)
 				{
-				LifeAI=LifeAI-1;
+				LifeAI=LifeAI+1;
+				if(LifeAI>FLifeAI){LifeAI=FLifeAI;}
 				}
 				else
 				{
-				Life=Life-1;
+				Life=Life+1;
+				if(Life>FLife){Life=FLife;}
 				}
 			}
 		}
@@ -136,6 +142,7 @@ public class difficulty {
 	
 	public void go(int Action,int Action_AI,int id_entity,int id_AI)
 	{
+		//Define Damage take depending of each entity actions
 		boolean AI;
 		if (Action_AI==2)
 		{
@@ -181,6 +188,7 @@ public class difficulty {
 	
 	public void Alea(int Action,int Action_AI,int id_entity,int id_AI)
 	{
+		//Define the AI Action for the Alea Difficulty
 		Action_AI=1;
 		Random r = new Random();
 		Action_AI=1+r.nextInt(4-1);
@@ -190,6 +198,7 @@ public class difficulty {
 	
 	public void Normal(int Action,int Action_AI,int id_entity,int id_AI)
 	{
+		//Define the AI Action for the Normal Difficulty
 		Action_AI=1;
 		Random r = new Random();
 		if (Action==1){Action_AI=2+r.nextInt(4-2);}
@@ -200,6 +209,7 @@ public class difficulty {
 	
 	public void Hard(int Action,int Action_AI,int id_entity,int id_AI)
 	{
+		//Define the AI Action for the Hard Difficulty
 		Action_AI=1;
 		if (Action==1)
 		{
@@ -230,6 +240,7 @@ public class difficulty {
 	
 	public void Fight(int Difficulty,int Action,int Action_AI,ArrayList<entity> entities)
 	{
+		//set the difficulty to used for each Action in the game
 				setEntity(entities);
 				if (Difficulty==1)
 				{
@@ -243,32 +254,12 @@ public class difficulty {
 				{
 					Hard(Action,Action_AI,id_entity,id_AI);
 				}
-				if(LifeAI<=0&&Life>0)
-				{
-					stat.takeVariable();
-					int a=0,b=0,c=0,d=0;
-					if (id_entity==1){a++;}
-					if (id_entity==2){b++;}
-					if (id_entity==3){c++;}
-					if (id_entity==4){d++;}
-					stat.write(a, b, c, d);
-					int Result=1;
-					MU.menuRetry(Result);
-				}
-				if(Life<=0&&LifeAI>0)
-				{
-					stat.takeVariable();
-					int a=0,b=0,c=0,d=0;
-					if (id_AI==1){a++;}
-					if (id_AI==2){b++;}
-					if (id_AI==3){c++;}
-					if (id_AI==4){d++;}
-					stat.write(a, b, c, d);
-					int Result=2;
-					MU.menuRetry(Result);
-				}
+				
+				//recover informations to set results
+				
 				if(Life<=0&&LifeAI<=0)
 				{
+					//show results of a draw game
 					stat.takeVariable();
 					int a=0,b=0,c=0,d=0;
 					if (id_AI==1||id_entity==1){a++;}
@@ -279,8 +270,36 @@ public class difficulty {
 					int Result=3;
 					MU.menuRetry(Result);
 				}
+				
+				if(LifeAI<=0&&Life>0)
+				{
+					//show results of a win game
+					stat.takeVariable();
+					int a=0,b=0,c=0,d=0;
+					if (id_entity==1){a++;}
+					if (id_entity==2){b++;}
+					if (id_entity==3){c++;}
+					if (id_entity==4){d++;}
+					stat.write(a, b, c, d);
+					int Result=1;
+					MU.menuRetry(Result); 
+				}
+				if(Life<=0&&LifeAI>0)
+				{
+					//show results of a loose game
+					stat.takeVariable();
+					int a=0,b=0,c=0,d=0;
+					if (id_AI==1){a++;}
+					if (id_AI==2){b++;}
+					if (id_AI==3){c++;}
+					if (id_AI==4){d++;}
+					stat.write(a, b, c, d);
+					int Result=2;
+					MU.menuRetry(Result);
+				}
 				else
 				{
+				//else we keep going the game
 				entities.clear();
 				Reset(entities);
 				}
@@ -290,11 +309,12 @@ public class difficulty {
 
 	
 	public int getAction_AI() {
-		return Action_AI;
+		return Action_AI; //get the action take by the AI
 	}
 
 	public void setEntity(ArrayList<entity> entities)
 	{
+		//take the entity informations
 		for(int i=0;i<entities.size();i++)
 		{
 			entity TempEntity = entities.get(i);
@@ -317,6 +337,7 @@ public class difficulty {
 	
 	public void Reset(ArrayList<entity> entities)
 	{
+		//Redefine the entity characteristic after the Action of each other
 		if (id_entity==1)
 		{
 			entities.add(new fighter(100,900/2-84,1,Life,3,2));

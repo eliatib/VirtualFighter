@@ -6,7 +6,7 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 
 public class tank extends entity{
-
+	 //idem that fighter class but for the tank entity
 	characImage CI = new characImage(); 
 	
 	public tank(int x, int y, int id, int Life,int FLife, int Dmg) {
@@ -78,18 +78,6 @@ public class tank extends entity{
 	public void drawSpeReverse(Graphics2D g2d)
 	{
 		g2d.drawImage(getTankImg("image/tank/tankSpeFlip.png"), x-180, y, null);
-		super.drawInfR(g2d);
-	}
-	
-	public void drawDead(Graphics2D g2d)
-	{
-		g2d.drawImage(getTankImg("image/tank/tankDead.png"), x, y, null);
-		super.drawInf(g2d);
-	}
-	
-	public void drawDeadReverse(Graphics2D g2d)
-	{
-		g2d.drawImage(getTankImg("image/tank/tankDeadFlip.png"), x, y, null);
 		super.drawInfR(g2d);
 	}
 	

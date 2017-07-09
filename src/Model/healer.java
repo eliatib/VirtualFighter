@@ -6,7 +6,7 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 
 public class healer extends entity{
-
+	 //idem that fighter class but for the healer entity
 	characImage CI = new characImage(); 
 
 	
@@ -79,18 +79,6 @@ public class healer extends entity{
 	public void drawSpeReverse(Graphics2D g2d)
 	{
 		g2d.drawImage(getHealerImg("image/healer/healerSpeFlip.png"), x-190, y, null);
-		super.drawInfR(g2d);
-	}
-	
-	public void drawDead(Graphics2D g2d)
-	{
-		g2d.drawImage(getHealerImg("image/healer/healerDead.png"), x, y, null);
-		super.drawInf(g2d);
-	}
-	
-	public void drawDeadReverse(Graphics2D g2d)
-	{
-		g2d.drawImage(getHealerImg("image/healer/healerDeadFlip.png"), x, y, null);
 		super.drawInfR(g2d);
 	}
 	

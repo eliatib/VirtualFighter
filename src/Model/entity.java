@@ -6,21 +6,37 @@ public class entity {
 	protected int x,y,id,Life,FLife,Dmg;
 	characImage CI = new characImage();
 	
-	public entity(int x, int y, int id, int Life,int FLife, int Dmg)
+	public entity(int x, int y, int id, int Life,int FLife, int Dmg) //constructor who define the characteristic of each entity for thedaughter classes
 	{
-		this.x = x;
-		this.y = y;
-		this.id = id;
-		this.Life = Life;
-		this.FLife = FLife;
-		this.Dmg = Dmg;
+		this.x = x; //coordinate x
+		this.y = y; //coordinate y
+		this.id = id; //entity id
+		this.Life = Life; //entity life
+		this.FLife = FLife; //entity maximum life
+		this.Dmg = Dmg; //entity Dmg
 	}
 	
-	public void draw(Graphics2D g2d){}
+	public void draw(Graphics2D g2d){} //see in daughter class
 	
-	public void drawReverse(Graphics2D g2d){}
+	public void drawReverse(Graphics2D g2d){} //idem
 	
-	public void drawInf(Graphics2D g2d)
+	public void drawAtk(Graphics2D g2d){} //idem
+	
+	public void drawAtkReverse(Graphics2D g2d){} //idem
+	
+	public void drawDef(Graphics2D g2d){} //idem
+	
+	public void drawDefReverse(Graphics2D g2d){} //idem
+	
+	public void drawSpe(Graphics2D g2d){} //idem
+	
+	public void drawSpeReverse(Graphics2D g2d){} //idem
+	
+	public void drawDead(Graphics2D g2d){} //idem
+	
+	public void drawDeadReverse(Graphics2D g2d){} //idem
+	
+	public void drawInf(Graphics2D g2d) //draw information of the entity
 	{
 		for (int i=0;i<Life;i++)
 		{
@@ -33,7 +49,7 @@ public class entity {
 		}
 	}
 	
-	public void drawInfR(Graphics2D g2d)
+	public void drawInfR(Graphics2D g2d) //same that drawInf but for the AI
 	{
 		for (int i=0;i<Life;i++)
 		{
@@ -46,21 +62,7 @@ public class entity {
 		}
 	}
 	
-	public void drawAtk(Graphics2D g2d){}
-	
-	public void drawAtkReverse(Graphics2D g2d){}
-	
-	public void drawDef(Graphics2D g2d){}
-	
-	public void drawDefReverse(Graphics2D g2d){}
-	
-	public void drawSpe(Graphics2D g2d){}
-	
-	public void drawSpeReverse(Graphics2D g2d){}
-	
-	public void drawDead(Graphics2D g2d){}
-	
-	public void drawDeadReverse(Graphics2D g2d){}
+	//all getter to get entity information
 	
 	public int getId()
 	{
