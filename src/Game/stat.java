@@ -19,14 +19,20 @@ public class stat {
 		this.c=this.c+c; //idem
 		this.d=this.d+d; //idem
 		PrintWriter fichier = new PrintWriter(new FileWriter("stat.txt" ), false); //allow to write into the file stat.txt
-		if(this.a<10){fichier.println("Fighter : 0"+this.a+"  Win" );} //add the result of the game
-		else{fichier.println("Fighter : "+this.a+"  Win" );}
-		if(this.b<10){fichier.println("Healer  : 0"+this.b+"  Win" );} //idem
-		else{fichier.println("Healer  : "+this.b+"  Win" );}
-		if(this.c<10){fichier.println("Tank    : 0"+this.c+"  Win" );} //idem
-		else{fichier.println("Tank    : "+this.b+"  Win" );}
-		if(this.d<10){fichier.println("Vampire : 0"+this.d+"  Win" );} //idem
-		else{fichier.println("Vampire : "+this.b+"  Win" );}
+			if(a+b+c+d>=0)
+			{
+				if(this.a<10){fichier.println("Fighter : 0"+this.a+"  Win" );} //add the result of the game
+				else{fichier.println("Fighter : "+this.a+"  Win" );}
+				
+				if(this.b<10){fichier.println("Healer  : 0"+this.b+"  Win" );} //idem
+				else{fichier.println("Healer  : "+this.b+"  Win" );}
+				
+				if(this.c<10){fichier.println("Tank    : 0"+this.c+"  Win" );} //idem
+				else{fichier.println("Tank    : "+this.b+"  Win" );}
+				
+				if(this.d<10){fichier.println("Vampire : 0"+this.d+"  Win" );} //idem
+				else{fichier.println("Vampire : "+this.b+"  Win" );}
+			}
 		fichier.close(); //close the file
 		}
 		catch(Exception e) {}
