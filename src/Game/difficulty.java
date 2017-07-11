@@ -113,11 +113,13 @@ public class difficulty {
 				{
 				LifeAI=LifeAI-1;
 				Life=Life+1;
+				if(Life>FLife){Life=FLife;}
 				}
 				else
 				{
 				LifeAI=LifeAI+1;
 				Life=Life-1;
+				if(LifeAI>FLifeAI){LifeAI=FLifeAI;}
 				}
 				System.out.println("protection : ON");
 				System.out.println("Noting Happen");
@@ -128,13 +130,11 @@ public class difficulty {
 				System.out.println("Special: Dmg reverberate");
 				if(AI==true)
 				{
-				LifeAI=LifeAI+1;
-				if(LifeAI>FLifeAI){LifeAI=FLifeAI;}
+				LifeAI=LifeAI-1;
 				}
 				else
 				{
-				Life=Life+1;
-				if(Life>FLife){Life=FLife;}
+				Life=Life-1;
 				}
 			}
 		}
