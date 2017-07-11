@@ -19,7 +19,6 @@ public class stat {
 		this.c=this.c+c; //idem
 		this.d=this.d+d; //idem
 		PrintWriter fichier = new PrintWriter(new FileWriter("stat.txt" ), false); //allow to write into the file stat.txt
-		fichier.println(VL-10);
 		if(this.a<10){fichier.println("Fighter : 0"+this.a+"  Win" );} //add the result of the game
 		else{fichier.println("Fighter : "+this.a+"  Win" );}
 		if(this.b<10){fichier.println("Healer  : 0"+this.b+"  Win" );} //idem
@@ -41,11 +40,9 @@ public class stat {
 		try {
 			br = new BufferedReader(new FileReader("stat.txt")); //allow to read the file stat.txt
 			String line;
-			line = br.readLine();
-			VL = 10+Integer.parseInt(line);
 			while ((line = br.readLine()) != null) 
 			{
-				stat=line.substring(10,VL);
+				stat=line.substring(10,12);
 				if (i==0){a = Integer.parseInt(stat);} //recover the result part of the file
 				if (i==1){b = Integer.parseInt(stat);} //idem
 				if (i==2){c = Integer.parseInt(stat);} //idem
